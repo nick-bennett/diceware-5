@@ -13,6 +13,7 @@ public class BundleSource implements WordSource {
     words = new ArrayList<>(
         bundle.keySet().stream()
             .map((k) -> bundle.getString(k))
+            .filter((s) -> !s.matches("^.*\\W|\\d.*$")) // Filter out words with punctuation or numbers.
             .collect(Collectors.toList())
     );
   }
